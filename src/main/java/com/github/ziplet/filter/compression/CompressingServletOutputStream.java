@@ -17,7 +17,8 @@ package com.github.ziplet.filter.compression;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.servlet.ServletOutputStream;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.WriteListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -142,6 +143,16 @@ final class CompressingServletOutputStream extends ServletOutputStream {
         if (closed) {
             throw new IOException("Stream is already closed");
         }
+    }
+
+    @Override
+    public boolean isReady() {
+        return !isClosed() && !isAborted();
+    }
+
+    @Override
+    public void setWriteListener(WriteListener writeListener) {
+        throw new UnsupportedOperationException();
     }
 
     private static final class ResponseBufferCommitmentCallback

@@ -21,10 +21,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 
 /**
  * <p>Implementation of {@link HttpServletRequest} which can decompress request bodies that have
@@ -99,8 +99,8 @@ final class CompressedHttpServletRequest extends HttpServletRequestWrapper {
     }
 
     @Override
-    public Enumeration<?> getHeaders(String header) {
-        Enumeration<?> original = super.getHeaders(header);
+    public Enumeration<String> getHeaders(String header) {
+        Enumeration<String> original = super.getHeaders(header);
         if (original == null) {
             return null; // match container's behavior exactly in this case
         }
@@ -118,7 +118,7 @@ final class CompressedHttpServletRequest extends HttpServletRequestWrapper {
     }
 
     @Override
-    public Enumeration<?> getHeaderNames() {
+    public Enumeration<String> getHeaderNames() {
         Enumeration<?> original = super.getHeaderNames();
         if (original == null) {
             return null; // match container's behavior exactly in this case
@@ -130,7 +130,7 @@ final class CompressedHttpServletRequest extends HttpServletRequestWrapper {
                 headerNames.add(headerName);
             }
         }
-        return new IteratorEnumeration(headerNames.iterator());
+        return new IteratorEnumeration<>(headerNames.iterator());
     }
 
     @Override

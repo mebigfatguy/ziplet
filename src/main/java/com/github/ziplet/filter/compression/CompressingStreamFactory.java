@@ -34,7 +34,7 @@ import java.util.zip.GZIPOutputStream;
 import java.util.zip.InflaterInputStream;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * <p>Implementations of this abstract class can add compression of a particular type to a given

@@ -24,11 +24,11 @@ import java.util.Iterator;
  * @author Sean Owen
  * @since 1.6
  */
-final class IteratorEnumeration implements Enumeration<Object> {
+final class IteratorEnumeration<T> implements Enumeration<T> {
 
-    private final Iterator<?> iterator;
+    private final Iterator<T> iterator;
 
-    IteratorEnumeration(Iterator<?> iterator) {
+    IteratorEnumeration(Iterator<T> iterator) {
         if (iterator == null) {
             throw new IllegalArgumentException();
         }
@@ -39,7 +39,7 @@ final class IteratorEnumeration implements Enumeration<Object> {
         return iterator.hasNext();
     }
 
-    public Object nextElement() {
+    public T nextElement() {
         return iterator.next();
     }
 

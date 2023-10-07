@@ -32,8 +32,9 @@ final class EmptyEnumeration implements Enumeration<Object> {
         // do nothing
     }
 
-    public static Enumeration<?> getInstance() {
-        return instance;
+    public static <T> Enumeration<T> getInstance() {
+        //noinspection unchecked
+        return (Enumeration<T>) instance;
     }
 
     /**
