@@ -304,7 +304,7 @@ final class CompressingHttpServletResponse extends HttpServletResponseWrapper {
         } else {
             savedContentLength = contentLength;
             savedContentLengthSet = true;
-            LOGGER.debug("Saving application-specified content length for later: " + contentLength);
+            LOGGER.debug("Saving application-specified content length for later: {}", contentLength);
             if (compressingSOS != null && compressingSOS.isAborted()) {
                 httpResponse.setHeader(CONTENT_LENGTH_HEADER, String.valueOf(contentLength));
             }
@@ -316,7 +316,7 @@ final class CompressingHttpServletResponse extends HttpServletResponseWrapper {
         contentTypeOK = isCompressableContentType(contentType);
         httpResponse.setContentType(contentType);
         if (!contentTypeOK && compressingSOS != null) {
-            LOGGER.debug("Aborting compression since Content-Type is excluded: " + contentType);
+            LOGGER.debug("Aborting compression since Content-Type is excluded: {}", contentType);
             maybeAbortCompression();
         }
     }
@@ -383,7 +383,7 @@ final class CompressingHttpServletResponse extends HttpServletResponseWrapper {
     private boolean isAllowedHeader(String header) {
         boolean unallowed = header != null && equalsIgnoreCaseAny(header, UNALLOWED_HEADERS);
         if (unallowed && LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Header '" + header + "' cannot be set by application");
+            LOGGER.debug("Header '{}' cannot be set by application", header);
         }
         return !unallowed;
     }
@@ -455,7 +455,7 @@ final class CompressingHttpServletResponse extends HttpServletResponseWrapper {
         if (savedContentLengthSet
             && savedContentLength < (long) context.getCompressionThreshold()) {
             LOGGER.debug("Will not compress since page has set a content length which is less than "
-                + "the compression threshold: " + savedContentLength);
+                + "the compression threshold: {}", savedContentLength);
             return true;
         }
         if (noTransformSet) {

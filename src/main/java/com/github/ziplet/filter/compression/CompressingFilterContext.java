@@ -75,12 +75,12 @@ final class CompressingFilterContext {
 
         compressionThreshold = readCompressionThresholdValue(filterConfig);
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Using compressing threshold: " + compressionThreshold);
+            LOGGER.debug("Using compressing threshold: {}", compressionThreshold);
         }
 
         compressionLevel = readCompressionLevelValue(filterConfig);
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Using compression level: " + compressionLevel);
+            LOGGER.debug("Using compression level: {}", compressionLevel);
         }
 
         servletContext = filterConfig.getServletContext();
@@ -118,8 +118,7 @@ final class CompressingFilterContext {
         }
 
         if (!contentTypes.isEmpty()) {
-            LOGGER.debug("Filter will " + (includeContentTypes ? "include" : "exclude")
-                + " only these content types: " + contentTypes);
+            LOGGER.debug("Filter will {} only these content types: {}", includeContentTypes ? "include" : "exclude", contentTypes);
         }
 
         String includePathPatternsString = filterConfig.getInitParameter("includePathPatterns");
@@ -138,8 +137,7 @@ final class CompressingFilterContext {
         }
 
         if (!pathPatterns.isEmpty() && LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Filter will " + (includePathPatterns ? "include" : "exclude")
-                + " only these file patterns: " + pathPatterns);
+            LOGGER.debug("Filter will {} only these file patterns: {}", includePathPatterns ? "include" : "exclude", pathPatterns);
         }
 
         String includeUserAgentPatternsString = filterConfig
@@ -160,8 +158,8 @@ final class CompressingFilterContext {
         }
 
         if (!userAgentPatterns.isEmpty() && LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Filter will " + (includeUserAgentPatterns ? "include" : "exclude")
-                + " only these User-Agent patterns: " + userAgentPatterns);
+            LOGGER.debug("Filter will {} only these User-Agent patterns: {}", includeUserAgentPatterns ? "include" : "exclude",
+                    userAgentPatterns);
         }
 
     }

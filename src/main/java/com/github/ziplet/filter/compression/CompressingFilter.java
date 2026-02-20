@@ -306,7 +306,7 @@ public final class CompressingFilter implements Filter {
         }
 
         if (!CompressingStreamFactory.isSupportedRequestContentEncoding(contentEncoding)) {
-            LOGGER.debug("Can't decompress request with encoding: " + contentEncoding);
+        	LOGGER.debug("Can't decompress request with encoding: {}", contentEncoding);
             return null;
         }
 
@@ -332,18 +332,18 @@ public final class CompressingFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Request for: '" + httpRequest.getRequestURI() + '\'');
+            LOGGER.debug("Request for: '{}'", httpRequest.getRequestURI());
         }
 
         String requestURI = httpRequest.getRequestURI();
         if (!isCompressablePath(requestURI)) {
-            LOGGER.debug("Compression disabled for path: " + requestURI);
+            LOGGER.debug("Compression disabled for path: {}", requestURI);
             return null;
         }
 
         String userAgent = httpRequest.getHeader("User-Agent");
         if (!isCompressableUserAgent(userAgent)) {
-            LOGGER.debug("Compression disabled for User-Agent: " + userAgent);
+            LOGGER.debug("Compression disabled for User-Agent: {}", userAgent);
             return null;
         }
 
@@ -363,7 +363,7 @@ public final class CompressingFilter implements Filter {
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER
-                .debug("Compression supported; using content encoding '" + contentEncoding + '\'');
+                .debug("Compression supported; using content encoding '{}'", contentEncoding);
         }
 
         CompressingStreamFactory compressingStreamFactory =
